@@ -63,7 +63,7 @@ export const MOCKS = [
     request: {
       query: USER_PLEDGES,
       variables: {
-        userId: 'userId',
+        userId: { id: 'userId' },
         where: {
           name_contains: '',
         },
@@ -155,7 +155,7 @@ export const MOCKS = [
     request: {
       query: USER_PLEDGES,
       variables: {
-        userId: 'userId',
+        userId: { id: 'userId' },
         where: {
           firstName_contains: 'Harve',
         },
@@ -196,7 +196,7 @@ export const MOCKS = [
     request: {
       query: USER_PLEDGES,
       variables: {
-        userId: 'userId',
+        userId: { id: 'userId' },
         where: {
           name_contains: 'School',
         },
@@ -244,7 +244,7 @@ export const MOCKS = [
     request: {
       query: USER_PLEDGES,
       variables: {
-        userId: 'userId',
+        userId: { id: 'userId' },
         where: {
           firstName_contains: '',
         },
@@ -308,7 +308,7 @@ export const MOCKS = [
     request: {
       query: USER_PLEDGES,
       variables: {
-        userId: 'userId',
+        userId: { id: 'userId' },
         where: {
           firstName_contains: '',
         },
@@ -372,7 +372,7 @@ export const MOCKS = [
     request: {
       query: USER_PLEDGES,
       variables: {
-        userId: 'userId',
+        userId: { id: 'userId' },
         where: {
           firstName_contains: '',
         },
@@ -436,7 +436,7 @@ export const MOCKS = [
     request: {
       query: USER_PLEDGES,
       variables: {
-        userId: 'userId',
+        userId: { id: 'userId' },
         where: {
           firstName_contains: '',
         },
@@ -561,7 +561,7 @@ export const EMPTY_MOCKS = [
     request: {
       query: USER_PLEDGES,
       variables: {
-        userId: 'userId',
+        userId: { id: 'userId' },
         where: {
           firstName_contains: '',
         },
@@ -582,7 +582,7 @@ export const USER_PLEDGES_ERROR = [
     request: {
       query: USER_PLEDGES,
       variables: {
-        userId: 'userId',
+        userId: { id: 'userId' },
         where: {
           firstName_contains: '',
         },
