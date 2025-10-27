@@ -127,7 +127,7 @@ const Pledges = (): JSX.Element => {
     >;
   } = useQuery(USER_PLEDGES, {
     variables: {
-      userId: userId,
+      userId: { id: userId },
       where: {
         firstName_contains: searchBy === 'pledgers' ? searchTerm : undefined,
         name_contains: searchBy === 'campaigns' ? searchTerm : undefined,
@@ -170,24 +170,35 @@ const Pledges = (): JSX.Element => {
 
   useEffect(() => {
     if (pledgeData) {
-      setPledges(pledgeData.getPledgesByUserId);
+      setPledges(pledgeData.getPledgesByUserId || []);
     }
   }, [pledgeData]);
 
   if (pledgeLoading) return <Loader size="xl" />;
+
   if (pledgeError) {
-    return (
-      <div className={`${styles.container} bg-white rounded-4 my-3`}>
-        <div className={styles.message} data-testid="errorMsg">
-          <WarningAmberRounded className={styles.errorIcon} fontSize="large" />
-          <h6 className="fw-bold text-danger text-center">
-            {tErrors('errorLoading', { entity: 'Pledges' })}
-            <br />
-            {pledgeError.message}
-          </h6>
-        </div>
-      </div>
+    // If error is "No associated resources", just show empty state instead of error
+    const isNoResourcesError = pledgeError.message?.includes(
+      'No associated resources',
     );
+    if (!isNoResourcesError) {
+      return (
+        <div className={`${styles.container} bg-white rounded-4 my-3`}>
+          <div className={styles.message} data-testid="errorMsg">
+            <WarningAmberRounded
+              className={styles.errorIcon}
+              fontSize="large"
+            />
+            <h6 className="fw-bold text-danger text-center">
+              {tErrors('errorLoading', { entity: 'Pledges' })}
+              <br />
+              {pledgeError.message}
+            </h6>
+          </div>
+        </div>
+      );
+    }
+    // If "No associated resources" error, continue to render empty table
   }
 
   const columns: GridColDef[] = [
